@@ -21,29 +21,29 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def edit 
+  def edit
     @article = Article.find(params[:id])
   end
 
-  def update 
+  def update
     @article = Article.find(params[:id])
 
     if @article.update(article_params)
-      redirect_to @article 
-    else 
+      redirect_to @article
+    else
       render :edit, status: :unprocessable_entity
     end
   end
 
-  def destroy 
+  def destroy
     @article = Article.find(params[:id])
     @article.destroy
 
     redirect_to root_path, status: :see_other
   end
 
-  private 
-    def article_params 
+  private
+    def article_params
       params.require(:article).permit(:title, :body)
     end
 end
